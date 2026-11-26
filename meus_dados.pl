@@ -75,3 +75,6 @@ dia_cheio(Dia) :- dia(Dia), findall(T, ocupado(Dia, T), Ts), sort(Ts, Unicos), l
 
 % R6 · Dia na semana que eu corro e tenho a tarde livre para descansar
 dia_de_corrida(Dia, Turno) :- compromisso(Dia, Turno, corro), livre(Dia, tarde).
+
+gosta(filme, velozes_e_furiosos).
+gosta(comida, lasanha).

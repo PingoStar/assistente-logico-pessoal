@@ -1,4 +1,4 @@
-from prolog import consultar, verdade, atomo
+from prolog import BASE, consultar, verdade, atomo
 
 
 def mostrar(titulo, itens):
@@ -55,6 +55,17 @@ def minha_regra():
     mostrar("Dia de corrida (com tarde livre)", [f"{x['Dia']} de {x['Turno']}" for x in r])
 
 
+def cadastrar_gosto():
+    categoria = atomo(input("Categoria: "))
+    item = atomo(input("Item: "))
+    if not categoria or not item:
+        print("Categoria ou item inválido.")
+        return
+    with open(BASE, "a", encoding="utf-8") as arquivo:
+        arquivo.write(f"\ngosta({categoria}, {item}).")
+    print(f"Aprendi: você gosta de {item.replace('_', ' ')} ({categoria}).")
+
+
 OPCOES = {
     "1": ("Minhas disciplinas", minhas_disciplinas),
     "2": ("Agenda de um dia", agenda_do_dia),
@@ -64,6 +75,7 @@ OPCOES = {
     "6": ("Meus gostos por categoria", meus_gostos),
     "7": ("Dias cheios", dias_cheios),
     "8": ("Dia de corrida (Minha regra)", minha_regra),
+    "9": ("Cadastrar um gosto", cadastrar_gosto),
 }
 
 
